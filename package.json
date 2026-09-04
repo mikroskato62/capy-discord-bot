@@ -1,0 +1,39 @@
+{
+  "name": "capybara-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A modern, feature-rich, and interactive Discord bot delivering high-quality capybara joy, live web photos, and dynamic UI embeds.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node tests/capytest.js",
+    "deploy": "node src/deploy-commands.js",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "discord",
+    "discord-bot",
+    "capybara",
+    "discord-js",
+    "slash-commands",
+    "bot"
+  ],
+  "author": "mikroskato62",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikroskato62/capy-discord-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mikroskato62/capy-discord-bot/issues"
+  },
+  "homepage": "https://github.com/mikroskato62/capy-discord-bot#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "discord.js": "^14.25.1",
+    "dotenv": "^17.2.3",
+    "unicode-emoji-json": "^0.9.0"
+  }
+}

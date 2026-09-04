@@ -1,0 +1,49 @@
+# Capybara Discord Bot
+.capybara
+
+# Dependency directories
+node_modules/
+
+# Local collection storage
+data/*.json
+!data/.gitkeep
+tests/*.json
+
+# Environment variables (keep your tokens safe!)
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# Archives & Temporary zips
+*.zip
+*.tar.gz
+*.rar
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+
+# The End

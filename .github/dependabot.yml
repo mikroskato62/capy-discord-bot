@@ -1,0 +1,26 @@
+# GitHub Dependabot Configuration
+# Automatically scans and opens pull requests for outdated npm and GitHub Actions dependencies.
+# Note: Automated pull requests trigger CI testing (.github/workflows/test.yml) to ensure compatibility before merging.
+version: 2
+updates:
+  # Maintain npm dependencies (discord.js, dotenv, unicode-emoji-json)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      time: "03:00"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+  # Maintain GitHub Actions workflow dependencies
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      time: "03:00"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "ci(deps)"
+# Capybara Discord Bot
