@@ -14,7 +14,18 @@ const commands = commandsArray;
 // [#3] Command registration execution handler ...
 async function deployCommands()
 {
-  const { TOKEN, CLIENT_ID, GUILD_ID } = process.env;
+  let { TOKEN, CLIENT_ID, GUILD_ID } = process.env;
+
+  // Automatically derive CLIENT_ID from bot TOKEN if not explicitly set:
+  if (!CLIENT_ID && TOKEN)
+  {
+    try
+    {
+      const extracted = Buffer.from(TOKEN.split(".")[0], "base64").toString("utf-8");
+      if (/^\d{17,20}$/.test(extracted)) { CLIENT_ID = extracted; }
+    }
+    catch (_) {}
+  }
 
   if (!TOKEN || !CLIENT_ID)
   {

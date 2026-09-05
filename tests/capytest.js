@@ -91,8 +91,11 @@ const TEST_STORAGE_FILE = path.join(__dirname, 'test-capydex.json');
       assert(cmd.name && cmd.name.length > 0, 'Command must have a valid name');
       assert(cmd.description && cmd.description.length > 5, `Command /${cmd.name} must have a descriptive description`);
       assert(!cmd.options || Array.isArray(cmd.options), `Command /${cmd.name} options must be an array if present`);
+      assert(Array.isArray(cmd.integration_types) && cmd.integration_types.includes(1), `Command /${cmd.name} must support UserInstall (integration_type 1)`);
+      assert(Array.isArray(cmd.contexts) && cmd.contexts.includes(2), `Command /${cmd.name} must support PrivateChannel (context 2)`);
     }
     console.log('[+] Commands array validated directly from deploy-commands.js:', deployedCommands.map(c => `/${c.name}`).join(', '));
+    console.log('[+] UserInstall & PrivateChannel DM contexts validated for all commands');
 
     // 4. Test Real Production getCapyInfoData, getCapybaraData & Anti-Spam Cooldowns
     console.log('\n[*] Test 4: Testing real production embed generators & anti-spam cooldowns...');

@@ -3,7 +3,7 @@
 // Run: node src/commands/capybaras.js (or imported via command handler).
 
 // [#1] Core dependencies & setups ...
-const { SlashCommandBuilder, MessageFlags } = require("discord.js");
+const { SlashCommandBuilder, MessageFlags, ApplicationIntegrationType, InteractionContextType } = require("discord.js");
 const { getCapybaraData } = require("../services/capybaraData");
 const { createCapybaraButtonRow } = require("../components/buttons");
 const { getCooldownRemaining, setCooldown, addInitialReaction } = require("../services/reactions");
@@ -11,7 +11,16 @@ const { getCooldownRemaining, setCooldown, addInitialReaction } = require("../se
 // [#2] Command schema definition ...
 const data = new SlashCommandBuilder()
   .setName("capybaras")
-  .setDescription("[ Command: view a random capybara image! ]");
+  .setDescription("[ Command: view a random capybara image! ]")
+  .setIntegrationTypes([
+    ApplicationIntegrationType.GuildInstall,
+    ApplicationIntegrationType.UserInstall,
+  ])
+  .setContexts([
+    InteractionContextType.Guild,
+    InteractionContextType.BotDM,
+    InteractionContextType.PrivateChannel,
+  ]);
 
 // [#3] Command execution handler ...
 async function execute(interaction, client = null)
