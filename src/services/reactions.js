@@ -50,7 +50,7 @@ async function addInitialReaction(interaction, response)
   catch (error) { console.warn("[!] Warning: Could not add default reaction: ", error.message, " ..."); }
 }
 
-// Cooldown anti-spam protection (1 second per user):
+// Cooldown anti-spam protection (3 seconds per user):
 const cooldowns = new Map();
 
 // Check if a user currently has an active cooldown:

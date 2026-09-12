@@ -20,9 +20,9 @@ function createCapybaraButtonRow(userId = "")
   const suffix = userId ? `:${userId}` : "";
   return new ActionRowBuilder().addComponents(
     new ButtonBuilder()
-      .setCustomId(`capybara_next${suffix}`)
-      .setLabel("👍🏻")
-      .setStyle(ButtonStyle.Primary),
+      .setCustomId(`capybara_leave${suffix}`)
+      .setLabel("👎🏻")
+      .setStyle(ButtonStyle.Danger),
     new ButtonBuilder()
       .setCustomId(`capydex_view${suffix}`)
       .setEmoji("📖")
@@ -36,9 +36,9 @@ function createCapybaraButtonRow(userId = "")
       .setEmoji("🏆")
       .setStyle(ButtonStyle.Success),
     new ButtonBuilder()
-      .setCustomId(`capybara_leave${suffix}`)
-      .setLabel("👎🏻")
-      .setStyle(ButtonStyle.Danger)
+      .setCustomId(`capybara_next${suffix}`)
+      .setLabel("👍🏻")
+      .setStyle(ButtonStyle.Primary)
   );
 }
 
@@ -48,9 +48,9 @@ function createCapywebButtonRow(userId = "")
   const suffix = userId ? `:${userId}` : "";
   return new ActionRowBuilder().addComponents(
     new ButtonBuilder()
-      .setCustomId(`capyweb_next${suffix}`)
-      .setLabel("👍🏻")
-      .setStyle(ButtonStyle.Primary),
+      .setCustomId(`capybara_leave${suffix}`)
+      .setLabel("👎🏻")
+      .setStyle(ButtonStyle.Danger),
     new ButtonBuilder()
       .setCustomId(`capydex_view${suffix}`)
       .setEmoji("📖")
@@ -64,9 +64,9 @@ function createCapywebButtonRow(userId = "")
       .setEmoji("🏆")
       .setStyle(ButtonStyle.Success),
     new ButtonBuilder()
-      .setCustomId(`capybara_leave${suffix}`)
-      .setLabel("👎🏻")
-      .setStyle(ButtonStyle.Danger)
+      .setCustomId(`capyweb_next${suffix}`)
+      .setLabel("👍🏻")
+      .setStyle(ButtonStyle.Primary)
   );
 }
 
@@ -76,9 +76,9 @@ function createCapyinfoButtonRow(userId = "")
   const suffix = userId ? `:${userId}` : "";
   return new ActionRowBuilder().addComponents(
     new ButtonBuilder()
-      .setCustomId(`capyinfo_links${suffix}`)
-      .setLabel("👍🏻")
-      .setStyle(ButtonStyle.Primary),
+      .setCustomId(`capybara_leave${suffix}`)
+      .setLabel("👎🏻")
+      .setStyle(ButtonStyle.Danger),
     new ButtonBuilder()
       .setCustomId(`capydex_view${suffix}`)
       .setEmoji("📖")
@@ -92,9 +92,9 @@ function createCapyinfoButtonRow(userId = "")
       .setEmoji("🏆")
       .setStyle(ButtonStyle.Success),
     new ButtonBuilder()
-      .setCustomId(`capybara_leave${suffix}`)
-      .setLabel("👎🏻")
-      .setStyle(ButtonStyle.Danger)
+      .setCustomId(`capyinfo_links${suffix}`)
+      .setLabel("👍🏻")
+      .setStyle(ButtonStyle.Primary)
   );
 }
 

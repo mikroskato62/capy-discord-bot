@@ -119,6 +119,8 @@ async function getWebCapybaraData(user, clientInstance = null)
   let isFallback = false;
   let photoIndex = null;
 
+  let filesToSend = [];
+
   try
   {
     const response = await fetch("https://api.capy.lol/v1/capybara?json=true", { signal: AbortSignal.timeout(4000), });
@@ -140,6 +142,14 @@ async function getWebCapybaraData(user, clientInstance = null)
           altText = formattedAlt;
         }
       }
+
+      // Download raw image buffer into memory and attach directly for instant rendering:
+      const imgResponse = await fetch(imageUrl, { signal: AbortSignal.timeout(4000) });
+      if (!imgResponse.ok) { throw new Error(`Image HTTP ${imgResponse.status}`); }
+      const arrayBuffer = await imgResponse.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+      const attachment = new AttachmentBuilder(buffer, { name: "capyweb.jpg" });
+      filesToSend = [attachment];
     }
     else
     {
@@ -150,10 +160,10 @@ async function getWebCapybaraData(user, clientInstance = null)
   {
     console.warn("[!] Warning: Live capybara API request failed, falling back to local images: ", error.message, " ...");
     isFallback = true;
+    filesToSend = [];
   }
 
-  let finalImage = imageUrl;
-  let filesToSend = [];
+  let finalImage = "attachment://capyweb.jpg";
   let descriptionText = altText ? `( 🌐 )  ${altText}` : "( 🌐 )  This image was found on the web ...";
 
   if (!isFallback && photoIndex && user?.id)
@@ -167,7 +177,7 @@ async function getWebCapybaraData(user, clientInstance = null)
   let footerText = `* CMD: /capyweb • API: api.capy.lol • Web Photo ${photoIdentifier} ...\n${collectionText}\n* Requested by @${userTag} • Today at ${timeString} ...`;
 
   // Fallback to local image when API is offline:
-  if (isFallback || !imageUrl)
+  if (isFallback || filesToSend.length === 0)
   {
     const fallbackImage = fs.existsSync(path.join(IMAGES_DIR, "hello.png")) ? "hello.png" : "hello.jpg";
     const attachment = new AttachmentBuilder(path.join(IMAGES_DIR, fallbackImage), { name: "fallback.jpg" });
@@ -255,12 +265,12 @@ function getCapyInfoData(user, clientInstance = null)
           "▸ The bot will send a delightful embed message instantly.",
           "▸ Check and enjoy the attached photo with its unique description!",
           "▸ Interact with that photo by clicking any of the buttons below:",
-          "▸ Click the blue (left) button to get a new random capybara photo.",
+          "▸ Click the red (left) button to exit and dismiss the message.",
           "▸ Click the green (middle-left) button to view your personal capydex collection.",
           "▸ Click the grey (middle) button to add a random reaction emoji.",
           "▸ Click the green (middle-right) button to view the server leaderboard.",
-          "▸ Click the red (right) button to exit and dismiss the message.",
-          "▸ Note: please avoid spamming as a built-in 1-second cooldown exists!",
+          "▸ Click the blue (right) button to get a new random capybara photo.",
+          "▸ Note: please avoid spamming as a built-in 3-second cooldown exists!",
           "▸ That's all - relax, have fun, and enjoy the capybaras :)",
         ]
         .join("\n"),

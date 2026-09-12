@@ -850,7 +850,7 @@ Use this diagnostic reference table to instantly isolate and resolve operational
 
 #### Fault: Commands return delayed or console outputs HTTP 429
 * **Built-in Anti-Spam Cooldown Protection**:
-  * The bot enforces an internal **1-second per-user cooldown** across all slash commands and button interactions:
+  * The bot enforces an internal **3-second per-user cooldown** across all slash commands and button interactions:
     ```javascript
     const remaining = getCooldownRemaining(interaction.user.id);
     if (remaining > 0) {

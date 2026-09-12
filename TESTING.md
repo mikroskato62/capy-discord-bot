@@ -420,7 +420,7 @@ Execute the following actions inside your test server to verify dynamic componen
 To verify production stability, purposefully trigger edge cases:
 
 #### Test A: Anti-Spam Rate Limit Cooldown
-* **Action**: Click the **Next** button rapidly 3 times in less than 1 second.
+* **Action**: Click the **Next** button rapidly 3 times in less than 3 seconds.
 * **Expected Result**: On rapid clicks, the bot catches the interaction and replies ephemerally:  
   `Slow down! Please wait 0.8s before using buttons again.`
 * **Significance**: Prevents users from spamming the Discord Gateway and triggering `HTTP 429 Too Many Requests`.

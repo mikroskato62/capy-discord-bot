@@ -30,7 +30,7 @@ async function execute(interaction, client = null)
   if (remainingMs > 0)
   {
     return interaction.reply({
-      content: `- **Capybaras need a break - do you want to scare them?** \n> || **Please __do not spam__ the command - __cooldown__ is 1 second!** ||`,
+      content: `- **Capybaras need a break - do you want to scare them?** \n> || **Please __do not spam__ the command - __cooldown__ is 3 seconds!** ||`,
       flags: MessageFlags.Ephemeral,
     });
   }
