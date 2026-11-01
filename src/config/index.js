@@ -21,7 +21,7 @@ const LOGO_PATH = path.join(ASSETS_DIR, "logo.png");
 
 // [#4] Subsystem default constants & timers ...
 const DEFAULT_WEB_TOTAL = 747;
-const COOLDOWN_DURATION = 1000;
+const COOLDOWN_DURATION = 3000;
 
 module.exports = {
   CUSTOM_EMOJI_ID,

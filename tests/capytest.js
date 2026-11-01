@@ -91,8 +91,11 @@ const TEST_STORAGE_FILE = path.join(__dirname, 'test-capydex.json');
       assert(cmd.name && cmd.name.length > 0, 'Command must have a valid name');
       assert(cmd.description && cmd.description.length > 5, `Command /${cmd.name} must have a descriptive description`);
       assert(!cmd.options || Array.isArray(cmd.options), `Command /${cmd.name} options must be an array if present`);
+      assert(Array.isArray(cmd.integration_types) && cmd.integration_types.includes(1), `Command /${cmd.name} must support UserInstall (integration_type 1)`);
+      assert(Array.isArray(cmd.contexts) && cmd.contexts.includes(2), `Command /${cmd.name} must support PrivateChannel (context 2)`);
     }
     console.log('[+] Commands array validated directly from deploy-commands.js:', deployedCommands.map(c => `/${c.name}`).join(', '));
+    console.log('[+] UserInstall & PrivateChannel DM contexts validated for all commands');
 
     // 4. Test Real Production getCapyInfoData, getCapybaraData & Anti-Spam Cooldowns
     console.log('\n[*] Test 4: Testing real production embed generators & anti-spam cooldowns...');
@@ -132,7 +135,7 @@ const TEST_STORAGE_FILE = path.join(__dirname, 'test-capydex.json');
     assert.strictEqual(getCooldownRemaining(cooldownTestUser), 0, 'New user should have 0ms cooldown');
     setCooldown(cooldownTestUser);
     const remainingMs = getCooldownRemaining(cooldownTestUser);
-    assert(remainingMs > 0 && remainingMs <= 1000, `Active cooldown must be between 1ms and 1000ms, got: ${remainingMs}`);
+    assert(remainingMs > 0 && remainingMs <= 3000, `Active cooldown must be between 1ms and 3000ms, got: ${remainingMs}`);
 
     console.log('[+] Real embed data generators & anti-spam cooldown mechanics verified.');
 
@@ -144,6 +147,8 @@ const TEST_STORAGE_FILE = path.join(__dirname, 'test-capydex.json');
     const capyRow = createCapybaraButtonRow(testUserId);
     const capyRowJson = capyRow.toJSON();
     assert.strictEqual(capyRowJson.components.length, 5, 'Should have 5 buttons in the capybaras action row');
+    assert(capyRowJson.components[0].custom_id.startsWith('capybara_leave'), 'Button 1 must be Leave');
+    assert.strictEqual(capyRowJson.components[0].style, ButtonStyle.Danger, 'Leave button should be Danger (red)');
     assert(capyRowJson.components[0].custom_id.includes(testUserId), 'Custom ID should encode target user ID');
     assert(capyRowJson.components[1].custom_id.startsWith('capydex_view'), 'Button 2 must be Capydex');
     assert.strictEqual(capyRowJson.components[1].style, ButtonStyle.Success, 'Capydex button should be Success (green)');
@@ -151,18 +156,22 @@ const TEST_STORAGE_FILE = path.join(__dirname, 'test-capydex.json');
     assert.strictEqual(capyRowJson.components[2].style, ButtonStyle.Secondary, 'Reaction button should be Secondary (grey)');
     assert(capyRowJson.components[3].custom_id.startsWith('capyleaderboard_view'), 'Button 4 must be Leaderboard');
     assert.strictEqual(capyRowJson.components[3].style, ButtonStyle.Success, 'Leaderboard button should be Success (green)');
-    assert(capyRowJson.components[4].custom_id.startsWith('capybara_leave'), 'Button 5 must be Leave');
-    assert.strictEqual(capyRowJson.components[4].style, ButtonStyle.Danger, 'Leave button should be Danger (red)');
+    assert(capyRowJson.components[4].custom_id.startsWith('capybara_next'), 'Button 5 must be Next');
+    assert.strictEqual(capyRowJson.components[4].style, ButtonStyle.Primary, 'Next button should be Primary (blue)');
 
     const webRowJson = createCapywebButtonRow(testUserId).toJSON();
     assert.strictEqual(webRowJson.components.length, 5, 'Capyweb row should have 5 buttons');
+    assert(webRowJson.components[0].custom_id.startsWith('capybara_leave'), 'Capyweb button 1 must be Leave');
     assert(webRowJson.components[1].custom_id.startsWith('capydex_view'), 'Capyweb button 2 must be Capydex');
     assert(webRowJson.components[3].custom_id.startsWith('capyleaderboard_view'), 'Capyweb button 4 must be Leaderboard');
+    assert(webRowJson.components[4].custom_id.startsWith('capyweb_next'), 'Capyweb button 5 must be Next');
 
     const infoRowJson = createCapyinfoButtonRow(testUserId).toJSON();
     assert.strictEqual(infoRowJson.components.length, 5, 'Capyinfo row should have 5 buttons');
+    assert(infoRowJson.components[0].custom_id.startsWith('capybara_leave'), 'Capyinfo button 1 must be Leave');
     assert(infoRowJson.components[1].custom_id.startsWith('capydex_view'), 'Capyinfo button 2 must be Capydex');
     assert(infoRowJson.components[3].custom_id.startsWith('capyleaderboard_view'), 'Capyinfo button 4 must be Leaderboard');
+    assert(infoRowJson.components[4].custom_id.startsWith('capyinfo_links'), 'Capyinfo button 5 must be Links');
 
     // Test getActionOwnerId across all fallback branches:
     // Branch 1: customId suffix (:userId)
@@ -216,9 +225,11 @@ const TEST_STORAGE_FILE = path.join(__dirname, 'test-capydex.json');
     const webData = await getWebCapybaraData(mockUser, mockClient);
     assert(webData.embeds && webData.embeds.length === 1, 'Should have 1 embed for web capybara');
     assert(webData.embeds[0].image && webData.embeds[0].image.url, 'Web capybara embed must contain an image URL');
+    assert.strictEqual(webData.embeds[0].image.url, 'attachment://capyweb.jpg', 'Live web capybara should attach buffered file');
+    assert.strictEqual(webData.files.length, 1, 'Live web capybara must attach exactly 1 file');
     assert(webData.embeds[0].footer.text.includes('/capyweb'), 'Footer should reference /capyweb');
     assert(webData.embeds[0].footer.text.includes('Collection:'), 'Web footer should include collection tracker progress');
-    console.log(`[+] Live /capyweb engine verified successfully! Image: ${webData.embeds[0].image.url.slice(0, 48)}...`);
+    console.log(`[+] Live /capyweb engine verified successfully! Image: ${webData.embeds[0].image.url}...`);
 
     // B. Offline Fallback test (Simulate network outage to verify fallback path):
     const originalFetch = globalThis.fetch;
@@ -371,7 +382,7 @@ const TEST_STORAGE_FILE = path.join(__dirname, 'test-capydex.json');
 
     const readmeContent = fs.readFileSync('./README.md', 'utf8');
     assert(readmeContent.includes('actions/workflows/test.yml'), 'README should contain CI status badge');
-    assert(readmeContent.includes('Weboardies'), 'README should contain Discord community badge');
+    assert(readmeContent.includes('discord.gg/d8pawxdSqG') || readmeContent.includes('Weboardies'), 'README should contain Discord community badge');
 
     // 12. Test Capydex Leaderboard, Gaming Tiebreakers, Server Filtering & Empty States
     console.log('\n[*] Test 12: Testing Capydex Leaderboard, gaming tiebreakers, server filtering & empty states...');

@@ -47,17 +47,19 @@
  
 <div align="center">
 
-[![CI Tests](https://img.shields.io/github/actions/workflow/status/mikroskato62/capy-discord-bot/test.yml?branch=main&label=CI%20Tests&style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/mikroskato62/capy-discord-bot/actions/workflows/test.yml)
+[![Add to Discord](https://img.shields.io/badge/Add_To_Discord-Invite_Bot-f97316?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/oauth2/authorize?client_id=1395033511559172157)
+[![Community](https://img.shields.io/badge/Community-Join_Server-14b8a6?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/d8pawxdSqG)
+[![CI Tests](https://img.shields.io/github/actions/workflow/status/mikroskato62/capy-discord-bot/test.yml?branch=main&label=CI%20Tests&style=for-the-badge&logo=checkmarx&logoColor=white)](https://github.com/mikroskato62/capy-discord-bot/actions/workflows/test.yml)
 [![Node.js](https://img.shields.io/badge/Node.js-v18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Discord.js](https://img.shields.io/badge/Discord.js-v14.25-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.js.org/)
+[![API](https://img.shields.io/badge/Powered_By-api.capy.lol-ec4899?style=for-the-badge&logo=fastapi&logoColor=white)](https://api.capy.lol/)
 [![Wispbyte](https://img.shields.io/badge/Hosted%20On-Wispbyte%2024%2F7-6366f1?style=for-the-badge&logo=server&logoColor=white)](https://wispbyte.com/)
-[![Tests Passing](https://img.shields.io/badge/Tests-12%2F12%20Passing-brightgreen?style=for-the-badge&logo=checkmarx&logoColor=white)](./TESTING.md)
-[![Community](https://img.shields.io/badge/Community-Weboardies™-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/d8pawxdSqG)
-[![License](https://img.shields.io/badge/License-ISC-blue?style=for-the-badge)](./LICENSE)
+[![License](https://img.shields.io/badge/License-ISC-8b5cf6?style=for-the-badge)](./LICENSE)
 
-**A modern, feature-rich, and interactive Discord bot delivering high-quality capybara joy, live web photos, and dynamic UI embeds.**
+**A modern, feature-rich, and interactive bot delivering high-quality joy, live web photos, and dynamic UI embeds.**
 
-[Overview](#overview-what-is-capybara-bot) • [Features](#features-in-depth) • [Slash Commands](#slash-commands--interactive-components) • [Quick Start](#quick-start-guide-local-development) • [24/7 Hosting](#247-cloud-hosting-wispbyte) • [Testing Guide](#testing--quality-assurance) • [Project Structure](#project-structure) • [Configuration](#configuration--environment-variables) • [Tech Stack](#tech-stack) • [Contributing](#contributing--community) • [Credits](#image-credits--fair-use) • [License](#license) • [Thanks](#thanks)
+[Overview](#overview-what-is-capybara-bot) • [Features](#features-in-depth) • [Slash Commands](#slash-commands--interactive-components) • [Quick Start](#quick-start-guide-local-development) • [24/7 Hosting](#247-cloud-hosting-wispbyte) • [Testing Guide](#testing--quality-assurance) \
+[Project Structure](#project-structure) • [Configuration](#configuration--environment-variables) • [Tech Stack](#tech-stack) • [Contributing](#contributing--community) • [Credits](#image-credits--fair-use) • [License](#license) • [Thanks](#thanks)
 
 </div>
 
@@ -72,8 +74,8 @@
 ## 📌 Table of Contents
 
 1. [🦫 Overview: What is Capybara Bot?](#overview-what-is-capybara-bot)
-   * [The Capybara Philosophy](#the-capybara-philosophy)
-   * [System Architecture Overview](#system-architecture-overview)
+   * [🌿 The Capybara Philosophy](#the-capybara-philosophy)
+   * [🏗️ System Architecture Overview](#system-architecture-overview)
 2. [✨ Features in Depth](#features-in-depth)
    * [📸 Dual Image Delivery Engine (Local & Live Web API)](#dual-image-delivery-engine-local--live-web-api)
    * [🎨 Dynamic & Expressive Embeds](#dynamic--expressive-embeds)
@@ -83,12 +85,12 @@
    * [🛡️ Anti-Spam Rate Limiting & Cooldown Protection](#anti-spam-rate-limiting--cooldown-protection)
 3. [🎮 Slash Commands & Interactive Components](#slash-commands--interactive-components)
 4. [🚀 Quick Start Guide (Local Development)](#quick-start-guide-local-development)
-   * [Step 1: Prerequisites](#step-1-prerequisites)
-   * [Step 2: Clone Repository & Install Dependencies](#step-2-clone-repository--install-dependencies)
-   * [Step 3: Creating Your Bot & Getting Credentials from Discord](#step-3-creating-your-bot--getting-credentials-from-discord)
-   * [Step 4: Configure Environment Variables (`.env`)](#step-4-configure-environment-variables-env)
-   * [Step 5: Deploy Slash Commands](#step-5-deploy-slash-commands)
-   * [Step 6: Launch the Bot](#step-6-launch-the-bot)
+   * [📋 Step 0: Prerequisites](#step-1-prerequisites)
+   * [📥 Step 1: Clone Repository & Install Dependencies](#step-2-clone-repository--install-dependencies)
+   * [🤖 Step 2: Creating Your Bot & Getting Credentials from Discord](#step-3-creating-your-bot--getting-credentials-from-discord)
+   * [⚙️ Step 3: Configure Environment Variables (.env)](#step-4-configure-environment-variables-env)
+   * [📡 Step 4: Deploy Slash Commands](#step-5-deploy-slash-commands)
+   * [▶️ Step 5: Launch the Bot](#step-6-launch-the-bot)
 5. [☁️ 24/7 Cloud Hosting (Wispbyte)](#247-cloud-hosting-wispbyte)
 6. [🧪 Testing & Quality Assurance](#testing--quality-assurance)
 7. [📁 Project Structure](#project-structure)
@@ -195,15 +197,15 @@ The bot operates through an asynchronous, event-driven architecture connecting D
 ### 🔄 Interactive In-Place Navigation & Author-Only Security
 * **Seamless Message Cycling**: Click 👍 **Next** to cycle to another random photo in-place using Discord message edits, avoiding channel spam.
 * **Interactive Buttons**:
-  * 👍 **Next (`capybara_next` / `capyweb_next`)**: Cycles to another random photo.
-  * 🦫 **React (`capybara_react`)**: Adds a fun random animal/nature emoji reaction.
-  * 📖 **Capydex (`capydex_view`)**: Opens your personal collection tracker.
-  * 🏆 **Leaderboard (`capyleaderboard_view`)**: Opens the server collector leaderboard.
   * 👎 **Leave (`capybara_leave`)**: Dismisses the photo with an animated farewell.
+  * 📖 **Capydex (`capydex_view`)**: Opens your personal collection tracker.
+  * 🦫 **React (`capybara_react`)**: Adds a fun random animal/nature emoji reaction.
+  * 🏆 **Leaderboard (`capyleaderboard_view`)**: Opens the server collector leaderboard.
+  * 👍 **Next (`capybara_next` / `capyweb_next`)**: Cycles to another random photo (placed on the right for comfortable mobile thumb reach).
 * **Author-Only Protection**: The user ID of the command author is cryptographically encoded into button component metadata. If another user attempts to click **Next** or **Leave**, Discord blocks them with an ephemeral notification: *"Only the user who ran the command can control this interaction."*
 
 ### 🛡️ Anti-Spam Rate Limiting & Cooldown Protection
-* Features an internal **1-second per-user cooldown** across all slash commands and button interactions.
+* Features an internal **3-second per-user cooldown** across all slash commands and button interactions.
 * Protects Discord servers from chat floods and ensures your bot token remains safely within Discord API rate limits (`HTTP 429 Too Many Requests`).
 
 ---
@@ -212,9 +214,9 @@ The bot operates through an asynchronous, event-driven architecture connecting D
 
 | Command | Parameter | Source | Description | Interactive Buttons Included |
 | :--- | :--- | :--- | :--- | :--- |
-| **`/capybaras`** | *None* | Local Gallery (`./images`) | Fetches a random curated capybara photo with vibrant embeds and progress tracking. | 👍 **Next** • 📖 **Capydex** • 🦫 **React** • 🏆 **Leaderboard** • 👎 **Leave** |
-| **`/capyweb`** | *None* | Web API (`api.capy.lol`) | Fetches a live random capybara photo from an expanding online database of 820+ photos. | 👍 **Next** • 📖 **Capydex** • 🦫 **React** • 🏆 **Leaderboard** • 👎 **Leave** |
-| **`/capyinfo`** | *None* | Bot Core & Assets | Displays technical specifications, uptime stats, roadmap, and community links. | 👍 **Links** • 📖 **Capydex** • 🦫 **React** • 🏆 **Leaderboard** • 👎 **Leave** |
+| **`/capybaras`** | *None* | Local Gallery (`./images`) | Fetches a random curated capybara photo with vibrant embeds and progress tracking. | 👎 **Leave** • 📖 **Capydex** • 🦫 **React** • 🏆 **Leaderboard** • 👍 **Next** |
+| **`/capyweb`** | *None* | Web API (`api.capy.lol`) | Fetches a live random capybara photo from an expanding online database of 820+ photos. | 👎 **Leave** • 📖 **Capydex** • 🦫 **React** • 🏆 **Leaderboard** • 👍 **Next** |
+| **`/capyinfo`** | *None* | Bot Core & Assets | Displays technical specifications, uptime stats, roadmap, and community links. | 👎 **Leave** • 📖 **Capydex** • 🦫 **React** • 🏆 **Leaderboard** • 👍 **Links** |
 
 ---
 
@@ -485,18 +487,17 @@ A heartfelt thank you to everyone whose tools, APIs, resources, and passion make
 * **[Wispbyte](https://wispbyte.com/)** — For providing high-performance, 24/7 free cloud hosting with automated Git sync, keeping our capybaras online around the clock.
 * **Open-Source Contributors** — Sincere gratitude to all developers, artists, and contributors who have submitted code, reported bugs, improved documentation, and suggested creative features.
 * **Curated Photographers & Archives** — Special thanks to the creators and photographers sharing wholesome capybara moments across public web archives, creative commons sources, and Attica Zoological Park.
-* **The Discord Community** — Thank you to all server administrators, members, and capybara enthusiasts in the [Weboardies™ Community](https://discord.gg/d8pawxdSqG) who test the bot, cycle photos, complete their Capydex, and spread chill vibes! 🦫✨
+* **The Discord Community** — Thank you to everyone that pulled up to the [Discord Server](https://discord.gg/d8pawxdSqG)!
 
 ---
 
 <div align="center">
 
-### 💖 Join the Capybara Community!
-*Relax, stay chill, and enjoy high-quality capybaras every day.*
+#### *“May your days be peaceful, your waters warm, and your soul as chill as a capybara.” &nbsp;╸ A Capybara Lover*
 
-__**[Discord Server](https://discord.gg/d8pawxdSqG)**__ &nbsp;•&nbsp; __**[Capy Secret](./assets/README.md)**__
+__**[GitHub Repo](https://github.com/mikroskato62/capy-discord-bot)**__ &nbsp;•&nbsp; __**[Creator](https://weboardies.com/mikroskato62)**__ &nbsp;•&nbsp; __**[Invite Bot](https://discord.com/oauth2/authorize?client_id=1395033511559172157)**__ &nbsp;•&nbsp; __**[Discord Server](https://discord.gg/d8pawxdSqG)**__ &nbsp;•&nbsp; __**[Capy Secret](./assets/README.md)**__
 
-<sub>Built with 💖 for <img src="./assets/emoji.svg" width="18" height="18" alt="Capybara" valign="middle" /> by @mikroskato62.</sub>
+<sub>🤖🛠️❤️<img src="./assets/emoji.svg" width="18" height="18" alt="Capybara" valign="middle"/>✍️💩👍🏼</sub>
 
 </div>
 

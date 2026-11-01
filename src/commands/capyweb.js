@@ -3,7 +3,7 @@
 // Run: node src/commands/capyweb.js (or imported via command handler).
 
 // [#1] Core dependencies & setups ...
-const { SlashCommandBuilder, MessageFlags } = require("discord.js");
+const { SlashCommandBuilder, MessageFlags, ApplicationIntegrationType, InteractionContextType } = require("discord.js");
 const { getWebCapybaraData } = require("../services/capybaraData");
 const { createCapywebButtonRow } = require("../components/buttons");
 const { getCooldownRemaining, setCooldown, addInitialReaction } = require("../services/reactions");
@@ -11,7 +11,16 @@ const { getCooldownRemaining, setCooldown, addInitialReaction } = require("../se
 // [#2] Command schema definition ...
 const data = new SlashCommandBuilder()
   .setName("capyweb")
-  .setDescription("[ Command: view a random capybara image from the web! ]");
+  .setDescription("[ Command: view a random capybara image from the web! ]")
+  .setIntegrationTypes([
+    ApplicationIntegrationType.GuildInstall,
+    ApplicationIntegrationType.UserInstall,
+  ])
+  .setContexts([
+    InteractionContextType.Guild,
+    InteractionContextType.BotDM,
+    InteractionContextType.PrivateChannel,
+  ]);
 
 // [#3] Command execution handler ...
 async function execute(interaction, client = null)
@@ -21,7 +30,7 @@ async function execute(interaction, client = null)
   if (remainingMs > 0)
   {
     return interaction.reply({
-      content: `- **Capybaras need a break - do you want to scare them?** \n> || **Please __do not spam__ the command - __cooldown__ is 1 second!** ||`,
+      content: `- **Capybaras need a break - do you want to scare them?** \n> || **Please __do not spam__ the command - __cooldown__ is 3 seconds!** ||`,
       flags: MessageFlags.Ephemeral,
     });
   }
