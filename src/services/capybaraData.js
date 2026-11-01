@@ -301,7 +301,7 @@ function getCapyInfoData(user, clientInstance = null)
           "▸ **Developer:** Built for [Capybaras](https://en.wikipedia.org/wiki/Capybara) by [@mikroskato62](https://www.weboardies.com/mikroskato62).",
           "▸ **Architecture:** Modern [Node.js](https://nodejs.org) & [Discord.js](https://discord.js.org).",
           "▸ **APIs & Data:** Powered by [api.capy.lol](https://api.capy.lol/) & [unicode-emoji-json](https://www.npmjs.com/package/unicode-emoji-json).",
-          "▸ **Hosting:** Online 24/7 with [Wispbyte](https://wispbyte.com/).",
+          "▸ **Hosting:** Hosted with [Wispbyte](https://wispbyte.com/) (free tier).",
           "▸ **License:** Open-source under the [ISC License](https://opensource.org/license/isc).",
           "▸ **Source Code:** View repository on [GitHub](https://github.com/mikroskato62/capy-discord-bot).",
           "▸ **Mission:** Spread smiles & wholesome energy to everyone worldwide ...",

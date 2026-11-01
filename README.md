@@ -1,4 +1,4 @@
-<!--------------------------------------------------------------------------------------------------------------------------| 
+<!--------------------------------------------------------------------------------------------------------------------------|
 ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 █                                                                                                                           █
 █   ████      ███   ███   ██   ██   ██   ██████    ████     ████    ██   ██    ████      ██      ████    █████      █████   █
@@ -53,12 +53,12 @@
 [![Node.js](https://img.shields.io/badge/Node.js-v18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Discord.js](https://img.shields.io/badge/Discord.js-v14.25-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.js.org/)
 [![API](https://img.shields.io/badge/Powered_By-api.capy.lol-ec4899?style=for-the-badge&logo=fastapi&logoColor=white)](https://api.capy.lol/)
-[![Wispbyte](https://img.shields.io/badge/Hosted%20On-Wispbyte%2024%2F7-6366f1?style=for-the-badge&logo=server&logoColor=white)](https://wispbyte.com/)
+[![Wispbyte](https://img.shields.io/badge/Hosted%20On-Wispbyte%20Free-6366f1?style=for-the-badge&logo=server&logoColor=white)](https://wispbyte.com/)
 [![License](https://img.shields.io/badge/License-ISC-8b5cf6?style=for-the-badge)](./LICENSE)
 
 **A modern, feature-rich, and interactive bot delivering high-quality joy, live web photos, and dynamic UI embeds.**
 
-[Overview](#overview-what-is-capybara-bot) • [Features](#features-in-depth) • [Slash Commands](#slash-commands--interactive-components) • [Quick Start](#quick-start-guide-local-development) • [24/7 Hosting](#247-cloud-hosting-wispbyte) • [Testing Guide](#testing--quality-assurance) \
+[Overview](#overview-what-is-capybara-bot) • [Features](#features-in-depth) • [Slash Commands](#slash-commands--interactive-components) • [Quick Start](#quick-start-guide-local-development) • [Free Hosting](#free-cloud-hosting-wispbyte) • [Testing Guide](#testing--quality-assurance) \
 [Project Structure](#project-structure) • [Configuration](#configuration--environment-variables) • [Tech Stack](#tech-stack) • [Contributing](#contributing--community) • [Credits](#image-credits--fair-use) • [License](#license) • [Thanks](#thanks)
 
 </div>
@@ -67,7 +67,7 @@
 
 > [!NOTE]
 > **Welcome to the Capybara Discord Bot Repository!**  
-> Whether you are an experienced JavaScript engineer, a Discord community administrator, or someone who has never touched code before in your life, this documentation is written to guide you every step of the way. From setting up your bot locally to deploying it 24/7 in the cloud, everything is explained with complete clarity, step-by-step instructions, and zero assumed technical knowledge.
+> Whether you are an experienced JavaScript engineer, a Discord community administrator, or someone who has never touched code before in your life, this documentation is written to guide you every step of the way. From setting up your bot locally to deploying it in the cloud for free, everything is explained with complete clarity, step-by-step instructions, and zero assumed technical knowledge.
 
 ---
 
@@ -91,7 +91,7 @@
    * [⚙️ Step 3: Configure Environment Variables (.env)](#step-4-configure-environment-variables-env)
    * [📡 Step 4: Deploy Slash Commands](#step-5-deploy-slash-commands)
    * [▶️ Step 5: Launch the Bot](#step-6-launch-the-bot)
-5. [☁️ 24/7 Cloud Hosting (Wispbyte)](#247-cloud-hosting-wispbyte)
+5. [☁️ Free Cloud Hosting (Wispbyte)](#free-cloud-hosting-wispbyte)
 6. [🧪 Testing & Quality Assurance](#testing--quality-assurance)
 7. [📁 Project Structure](#project-structure)
 8. [🔐 Configuration & Environment Variables](#configuration--environment-variables)
@@ -118,7 +118,7 @@ The bot operates through an asynchronous, event-driven architecture connecting D
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                               DISCORD CLIENTS                               │
 │                                                                             │
-│     [User types /capybaras]         [User clicks 👍 Next / 📖 Capydex]     │
+│            [User types a command]        [User clicks a button]             │
 └───────────────────────┬─────────────────────────────▲───────────────────────┘
                         │                             │
            Gateway Interaction Event      REST Message Update / Embed
@@ -330,15 +330,20 @@ Open Discord, type `/capybaras` in your test server, and enjoy your capybaras! �
 
 ---
 
-## ☁️ 24/7 Cloud Hosting (Wispbyte)
+## ☁️ Free Cloud Hosting (Wispbyte)
 
-Running the bot on your personal computer means it goes offline whenever you close your laptop or turn off your PC. To keep your bot online **24 hours a day, 7 days a week, 365 days a year for free**, this repository is configured for hosting on **[Wispbyte](https://wispbyte.com/)**.
+Running the bot on your personal computer means it goes offline whenever you close your laptop or turn off your PC. To keep your bot online for free without keeping your computer on, this repository is configured for hosting on **[Wispbyte](https://wispbyte.com/)**.
 
-* 🪙 **100% Free Forever Tier**: No credit card required.
+> [!WARNING]
+> **Apology & Service Notice Regarding Free Wispbyte Hosting**:  
+> We sincerely apologize if you notice the bot going offline unexpectedly! On Wispbyte's free plan, the server container will automatically go offline after some period of inactivity (the exact idle duration depends on Wispbyte's free tier policies). If the bot goes offline, it simply needs to be restarted from the Wispbyte control panel.  
+> **Your data is 100% safe**: Please rest assured that no data or user progress will be lost! All Capydex collections, unlocks, and leaderboard rankings are persistently stored on the server volume (`data/capydata.json`) and remain completely intact whenever the bot is started back up. We are actively investigating better, uninterrupted hosting alternatives.
+
+* 🪙 **100% Free Tier**: No credit card required.
 * 🔄 **Automated GitHub Sync**: Connect your Wispbyte server directly to this repository. Whenever new commits or photos are pushed to GitHub, simply click **Restart** on Wispbyte to pull updates in seconds!
 * 🖥️ **Full Pterodactyl Control Panel**: Live console, file manager, resource graphs, and scheduled automated backups.
 
-📖 **For complete, click-by-click instructions, read the [Wispbyte 24/7 Hosting & Production Deployment Guide](./WISPBYTE.md).**
+📖 **For complete, click-by-click instructions, read the [Wispbyte Hosting & Production Deployment Guide](./WISPBYTE.md).**
 
 ---
 
@@ -353,7 +358,7 @@ npm test
 ```
 
 > [!IMPORTANT]
-> **The Golden Rule of Discord Bot Testing**: Never run your local code using the same Bot Token that is currently active on your 24/7 cloud host! Doing so causes Gateway event conflicts and "Interaction already replied to" errors. Always use a separate `Capybara Dev` bot for local testing.
+> **The Golden Rule of Discord Bot Testing**: Never run your local code using the same Bot Token that is currently active on your cloud host! Doing so causes Gateway event conflicts and "Interaction already replied to" errors. Always use a separate `Capybara Dev` bot for local testing.
 
 📖 **For exhaustive testing documentation, edge case mocking, and troubleshooting, consult the [Testing & Quality Assurance Guide](./TESTING.md).**
 
@@ -417,9 +422,9 @@ capy-discord-bot/                  # Capybara Discord Bot Project
 ├── CONTRIBUTING.md                # Guidelines for contributing code, photos & bug reports
 ├── SECURITY.md                    # Vulnerability reporting & token security protocols
 ├── TESTING.md                     # Comprehensive local and live testing guide
-└── WISPBYTE.md                    # Complete 24/7 cloud hosting & deployment guide
+├── WISPBYTE.md                    # Free cloud hosting & deployment guide
 ├── LICENSE                        # ISC Open-Source License
-├── README.md                      # Main repository landing page & documentation
+└── README.md                      # Main repository landing page & documentation
 ```
 
 ---
@@ -442,7 +447,7 @@ capy-discord-bot/                  # Capybara Discord Bot Project
 * **Configuration Management**: [dotenv](https://www.npmjs.com/package/dotenv)
 * **Emoji Data**: [unicode-emoji-json](https://www.npmjs.com/package/unicode-emoji-json) (1,900+ curated unicode glyphs)
 * **Continuous Integration**: [GitHub Actions](https://github.com/features/actions) (Multi-version matrix on Ubuntu)
-* **24/7 Cloud Hosting**: [Wispbyte](https://wispbyte.com/) (Pterodactyl Linux container with automated Git sync)
+* **Free Cloud Hosting**: [Wispbyte](https://wispbyte.com/) (Pterodactyl Linux container with automated Git sync)
 
 ---
 
@@ -484,7 +489,7 @@ A heartfelt thank you to everyone whose tools, APIs, resources, and passion make
 
 * **[Discord](https://discord.com/) & [Discord.js](https://discord.js.org/)** — For building the incredible platform, Developer Portal, and Discord.js library that power modern, event-driven bot applications.
 * **[api.capy.lol](https://api.capy.lol/)** — For creating and maintaining the amazing public capybara REST API that provides over 820+ live web photographs for our dynamic `/capyweb` engine.
-* **[Wispbyte](https://wispbyte.com/)** — For providing high-performance, 24/7 free cloud hosting with automated Git sync, keeping our capybaras online around the clock.
+* **[Wispbyte](https://wispbyte.com/)** — For providing high-performance, free cloud hosting with automated Git sync, keeping our capybaras accessible to our community.
 * **Open-Source Contributors** — Sincere gratitude to all developers, artists, and contributors who have submitted code, reported bugs, improved documentation, and suggested creative features.
 * **Curated Photographers & Archives** — Special thanks to the creators and photographers sharing wholesome capybara moments across public web archives, creative commons sources, and Attica Zoological Park.
 * **The Discord Community** — Thank you to everyone that pulled up to the [Discord Server](https://discord.gg/d8pawxdSqG)!

@@ -1,13 +1,13 @@
-# ☁️ Wispbyte 24/7 Hosting & Production Deployment Guide
+# ☁️ Wispbyte Free Hosting & Production Deployment Guide
 
 <div align="center">
 
-[![Hosted on Wispbyte](https://img.shields.io/badge/Hosted%20On-Wispbyte%2024%2F7-6366f1?style=for-the-badge&logo=server&logoColor=white)](https://wispbyte.com/)
+[![Hosted on Wispbyte](https://img.shields.io/badge/Hosted%20On-Wispbyte%20Free-6366f1?style=for-the-badge&logo=server&logoColor=white)](https://wispbyte.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-v18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Discord.js](https://img.shields.io/badge/Discord.js-v14.25-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.js.org/)
 [![Community Support](https://img.shields.io/badge/Community-Weboardies™-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/d8pawxdSqG)
 
-**The comprehensive, end-to-end guide to hosting, configuring, deploying, and maintaining the Capybara Discord Bot 24/7 on Wispbyte.**
+**The comprehensive, end-to-end guide to hosting, configuring, deploying, and maintaining the Capybara Discord Bot on Wispbyte, for free.**
 
 [Architecture](#1-architecture--hosting-fundamentals) • [Prerequisites](#2-prerequisites--environment-preparation) • [Discord Setup](#3-discord-application--bot-configuration) • [Wispbyte Setup](#4-wispbyte-server-provisioning) • [GitHub Deploy](#5-deployment-method-a-automated-github-git-sync) • [Manual Deploy](#6-deployment-method-b-manual-archive-upload) • [Verification](#7-verification-testing--live-monitoring) • [Maintenance](#8-routine-maintenance-updates--backups) • [Troubleshooting](#9-comprehensive-troubleshooting--error-resolution) • [Security](#10-security-best-practices--hardening)
 
@@ -17,14 +17,20 @@
 
 > [!NOTE]
 > **Who is this guide for?**  
-> This guide is structured for everyone—from developers deploying their first Node.js application to experienced system administrators looking for a complete deployment reference. Every phase explains both the **underlying mechanism** and the **exact, click-by-click instructions**, ensuring you achieve 100% stable 24/7 uptime without guesswork.
+> This guide is structured for everyone—from developers deploying their first Node.js application to experienced system administrators looking for a complete deployment reference. Every phase explains both the **underlying mechanism** and the **exact, click-by-click instructions**, ensuring you understand every step of the deployment process.
+
+> [!WARNING]
+> **Important Notice & Apology Regarding Free Plan Inactivity Downtime**:  
+> We sincerely apologize if the bot experiences downtime or goes offline unexpectedly! On Wispbyte's free hosting tier, the server container will automatically shut down after some period of inactivity or idle time (the exact duration depends on Wispbyte's free plan resource policies).  
+>  
+> 💖 **Zero Data Loss Guarantee**: Please rest assured that **no data or user progress will be lost**! All Capydex collections, unlocks, and leaderboard stats are persistently stored on the container's disk (`data/capydata.json`) and remain completely safe across any shutdowns or restarts. If the bot is offline, simply log into the Wispbyte panel and click **Start** to bring it back online.
 
 ---
 
 ## 📌 Table of Contents
 
 1. [📐 Architecture & Hosting Fundamentals](#1-architecture--hosting-fundamentals)
-   * [1.1 Local Hosting vs. 24/7 Cloud Hosting](#11-local-hosting-vs-247-cloud-hosting)
+   * [1.1 Local Hosting vs. Cloud Hosting](#11-local-hosting-vs-cloud-hosting)
    * [1.2 What is Wispbyte?](#12-what-is-wispbyte)
    * [1.3 System Communication Architecture](#13-system-communication-architecture)
    * [1.4 Bot Resource Profile & Footprint](#14-bot-resource-profile--footprint)
@@ -67,7 +73,7 @@
    * [8.2 Updating with Manual Archive](#82-updating-with-manual-archive)
    * [8.3 Backing Up Persistent Data (`data/capydata.json`)](#83-backing-up-persistent-data-datacapydatajson)
    * [8.4 Setting Up Automated Backup Schedules in Pterodactyl](#84-setting-up-automated-backup-schedules-in-pterodactyl)
-   * [8.5 Managing Wispbyte Free Tier Renewal & Activity Policies](#85-managing-wispbyte-free-tier-renewal--activity-policies)
+   * [8.5 Managing Wispbyte Free Tier Renewal & Inactivity Policies](#85-managing-wispbyte-free-tier-renewal--inactivity-policies)
 9. [🚑 Comprehensive Troubleshooting & Error Resolution](#9-comprehensive-troubleshooting--error-resolution)
    * [9.1 Gateway & Authentication Errors](#91-gateway--authentication-errors)
    * [9.2 Slash Command Deployment & Visibility Failures](#92-slash-command-deployment--visibility-failures)
@@ -86,7 +92,7 @@
 
 ## 1. Architecture & Hosting Fundamentals
 
-### 1.1 Local Hosting vs. 24/7 Cloud Hosting
+### 1.1 Local Hosting vs. Cloud Hosting
 
 When you execute `npm start` on your local development machine, the bot establishes an active persistent WebSocket connection to Discord's Gateway. However, relying on a personal computer for production hosting introduces several critical operational points of failure:
 
@@ -489,7 +495,7 @@ Before Discord clients can see and invoke `/capybaras`, `/capyweb`, or `/capyinf
    [!] Logged in on discord as Capybara Bot#9190 ...
    [!] Dynamic Web Capybara pool verified: 821 total images.
    ```
-5. Your bot is now fully operational and running 24/7 in production! 🎉
+5. Your bot is now fully operational and running in production! 🎉
 
 ---
 
@@ -729,16 +735,18 @@ Pterodactyl features a built-in automated scheduling engine:
 
 ---
 
-### 8.5 Managing Wispbyte Free Tier Renewal & Activity Policies
+### 8.5 Managing Wispbyte Free Tier Renewal & Inactivity Policies
 
-Like most free cloud hosting providers, Wispbyte requires periodic activity verification to reclaim inactive resources:
+Like most free cloud hosting providers, Wispbyte requires periodic activity verification and enforces inactivity thresholds to manage infrastructure costs:
 
-* **Activity Window**: Log into the Wispbyte Client Portal ([wispbyte.com/client](https://wispbyte.com/client)) at least once every 30 days.
+* **Inactivity Shutdowns**: On the free tier, Wispbyte servers will automatically shut down after a period of idle time / inactivity. We apologize for any inconvenience or missed interactions this causes! Whenever you notice the bot is offline, simply log into your Pterodactyl console and click **Start** to boot it back up.
+* **No Data Loss**: All user data, unlocked capybaras, and leaderboard rankings are persistently saved on disk in `/home/container/data/capydata.json`. Shutting down or stopping the container **will never delete or reset user progress**.
+* **Activity Window**: Log into the Wispbyte Client Portal ([wispbyte.com/client](https://wispbyte.com/client)) at least once every 14–30 days to keep your free account active.
 * **Server Status Check**: Verify your server card displays a status of **Active** / **Running**.
 * **Suspension Recovery**: If you miss the renewal window and find your server suspended:
   1. Log into the client dashboard.
   2. Locate your server card and click **Renew** or **Unsuspend**.
-  3. Return to the Pterodactyl panel and click **Start**. All files remain intact.
+  3. Return to the Pterodactyl panel and click **Start**. All files remain completely intact.
 
 ---
 
@@ -799,7 +807,7 @@ Use this diagnostic reference table to instantly isolate and resolve operational
   * Instance A handles and replies to the interaction token. Instance B receives the event late or attempts to reply to an already acknowledged interaction token, throwing an unhandled exception.
 * **Resolution**:
   1. Immediately close any local terminal sessions running `npm start` on your computer.
-  2. For local testing without disrupting your 24/7 production bot, create a dedicated development bot as documented in [TESTING.md](file:///c:/Users/User/Desktop/discord-bot/TESTING.md).
+  2. For local testing without disrupting your production bot, create a dedicated development bot as documented in [TESTING.md](file:///c:/Users/User/Desktop/discord-bot/TESTING.md).
 
 ---
 
@@ -930,7 +938,7 @@ This guarantees:
 <div align="center">
 
 ### 🌟 Production Deployment Complete!
-*Your Capybara Discord Bot is now hosted 24/7 with enterprise-grade stability, automatic updates, and rock-solid uptime.*
+*Your Capybara Discord Bot is now hosted with enterprise-grade stability, automatic updates, and rock-solid uptime, for free.*
 
 Need technical assistance or want to contribute?  
 **[Join the Discord Community](https://discord.gg/d8pawxdSqG)** &nbsp;•&nbsp; **[GitHub Repository](https://github.com/mikroskato62/capy-discord-bot)**

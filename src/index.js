@@ -38,7 +38,7 @@ const {
 const { registerEvents } = require("./events");
 const { commandsMap, commandsArray } = require("./commands");
 
-// [#2] Process error listeners for 24/7 uptime protection ...
+// [#2] Process error listeners for crash protection and uptime ...
 process.on("unhandledRejection", (reason) => { console.error("[!] Error: Unhandled Promise Rejection: ", reason, " ..."); });
 process.on("uncaughtException", (error) => { console.error("[!] Error: Uncaught Exception: ", error, " ..."); });
 

@@ -18,7 +18,7 @@
 
 > [!NOTE]
 > **Who is this guide for?**  
-> Whether you are writing your very first line of JavaScript, contributing new capybara photos to the gallery, or managing an enterprise-grade 24/7 Discord bot deployment, this guide provides a structured, safe roadmap to verify every feature. You will learn how to test your code thoroughly on your own computer without any risk of breaking the live bot running on your cloud server.
+> Whether you are writing your very first line of JavaScript, contributing new capybara photos to the gallery, or managing a production Discord bot deployment, this guide provides a structured, safe roadmap to verify every feature. You will learn how to test your code thoroughly on your own computer without any risk of breaking the live bot running on your cloud server.
 
 ---
 
@@ -80,7 +80,7 @@ Because of this interconnected nature, making edits directly on a live productio
 
 > [!CAUTION]
 > ### 🛑 NEVER RUN LOCAL CODE WITH YOUR PRODUCTION BOT TOKEN
-> If you start the bot locally on your PC using the **exact same `TOKEN`** that is currently running on your 24/7 cloud host ([Wispbyte](https://wispbyte.com/)), disaster strikes:
+> If you start the bot locally on your PC using the **exact same `TOKEN`** that is currently running on your cloud host ([Wispbyte](https://wispbyte.com/)), disaster strikes:
 >
 > ```text
 >               ┌──────────────────────────────────────────────┐
@@ -93,7 +93,7 @@ Because of this interconnected nature, making edits directly on a live productio
 >                     │                                 │
 >                     ▼                                 ▼
 >       ┌───────────────────────────┐     ┌───────────────────────────┐
->       │  Local Development PC     │     │  24/7 Production Host     │
+>       │  Local Development PC     │     │  Cloud Production Host    │
 >       │  (Running "npm start")    │     │  (Wispbyte Cloud Server)  │
 >       └─────────────┬─────────────┘     └─────────────┬─────────────┘
 >                     │                                 │
@@ -109,7 +109,7 @@ Because of this interconnected nature, making edits directly on a live productio
 > * Both consoles output unhandled rejection errors: `DiscordAPIError[10062]: Unknown interaction`.
 
 **The Industry-Standard Solution:**
-* 🏭 **Production Bot ("Capybara Bot")**: Runs 24/7 on Wispbyte using your primary production credentials. It serves your public Discord servers and is never modified directly.
+* 🏭 **Production Bot ("Capybara Bot")**: Runs on Wispbyte using your primary production credentials. It serves your public Discord servers and is never modified directly.
 * 🧪 **Development Bot ("Capybara Dev")**: A separate, free bot entity in the Discord Developer Portal with its own private credentials. It runs exclusively on your local computer inside your private testing server.
 
 ---
@@ -139,7 +139,7 @@ To guarantee 100% stability, this project follows a structured 3-tier testing mo
                                         ▼
  ┌─────────────────────────────────────────────────────────────────────────────┐
  │                   TIER 3: PRODUCTION SMOKE VERIFICATION                     │
- │  Platform: Wispbyte 24/7 Cloud Host                                         │
+ │  Platform: Wispbyte Cloud Host                                              │
  │  • Triggered via Git push to main and 1-click restart on Wispbyte.          │
  │  • Verifies container startup telemetry, Gateway handshake, and production  │
  │    command execution across public guilds.                                  │
@@ -455,7 +455,7 @@ Use this quick-reference matrix to determine the exact commands required for dif
 
 ## 6. Deploying Verified Code to Production (Wispbyte)
 
-Once your changes pass all 12 automated tests and perform cleanly in your local staging environment, deploy them to your 24/7 cloud host on [Wispbyte](https://wispbyte.com/).
+Once your changes pass all 12 automated tests and perform cleanly in your local staging environment, deploy them to your cloud host on [Wispbyte](https://wispbyte.com/).
 
 ### 6.1 Staging to Production Workflow
 
@@ -471,7 +471,7 @@ Once your changes pass all 12 automated tests and perform cleanly in your local 
          │
          │ (2. GitHub Actions CI runs & validates matrix)
          ▼
-  [Wispbyte 24/7 Cloud Host]
+  [Wispbyte Cloud Host]
          │
          │ (3. Click "Restart" in Wispbyte Console)
          ▼
@@ -577,7 +577,7 @@ When contributors submit pull requests:
 ### 8.3 Race Conditions & "Interaction Already Replied To" Errors
 
 #### Symptom: `DiscordAPIError[10062]: Unknown interaction` or duplicate replies
-* **Cause**: You left `npm start` running in a local terminal window while your 24/7 cloud server was also active with the same Token!
+* **Cause**: You left `npm start` running in a local terminal window while your cloud server was also active with the same Token!
 * **Resolution**:
   1. Stop your local terminal process with `Ctrl + C`.
   2. Verify your local [.env](file:///c:/Users/User/Desktop/discord-bot/.env) is using your **Development Bot Token**, not your Production Bot Token.
