@@ -33,7 +33,7 @@
   "type": "commonjs",
   "dependencies": {
     "discord.js": "^14.25.1",
-    "dotenv": "^18.0.9",
+    "dotenv": "^18.0.10",
     "unicode-emoji-json": "^0.9.0"
   }
 }
